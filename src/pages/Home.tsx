@@ -6,9 +6,9 @@ import { useSelectedPokemon } from '../hooks'
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { setSelectedPokemon } = useSelectedPokemon()
   const [searchParams] = useSearchParams()
   const [pokemons, setPokemons] = useState<PokemonResponse | null>(null)
+  const { setSelectedPokemon } = useSelectedPokemon()
 
   const page = Number(searchParams.get('page')) || 1
   const getPokemons = useCallback(async () => {
@@ -26,10 +26,6 @@ export const Home = () => {
   useEffect(() => {
     getPokemons()
   }, [getPokemons])
-
-  useEffect(() => {
-    setSelectedPokemon('bulbasaur')
-  }, [setSelectedPokemon])
 
   return (
     <div className="flex flex-col w-[500px] py-5">
