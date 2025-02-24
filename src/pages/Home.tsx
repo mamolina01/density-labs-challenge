@@ -32,7 +32,7 @@ export const Home = () => {
   }, [getPokemons])
 
   return (
-    <div className="flex flex-col py-5 px-10 gap-2">
+    <div className="flex flex-col py-5 px-2 md:px-10 gap-1 md:gap-2">
       {pokemons && pokemons.results.map(pokemon => <PokemonItem pokemon={pokemon} key={pokemon.url} />)}
       <div className="flex items-center w-full justify-evenly mt-2">
         {pokemons?.previous && (

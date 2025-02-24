@@ -15,7 +15,7 @@ export const PokemonItem = ({ pokemon }: Props) => {
     <div
       onClick={() => setSelectedPokemon(pokemon.name)}
       onDoubleClick={() => navigate(`/${pokemon.name}`)}
-      className="flex items-center w-full justify-between rounded-xl cursor-pointer px-5 py-1 shadow hover:bg-neutral-50 active:bg-neutral-100"
+      className="flex items-center w-full justify-between rounded-xl cursor-pointer px-2 md:px-5 py-1 shadow hover:bg-neutral-50 active:bg-neutral-100"
     >
       <span className="text-black">{pokemon.name}</span>
       <img src={pokeball} alt="pokeball" width={20} />

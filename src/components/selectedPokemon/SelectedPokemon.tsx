@@ -10,10 +10,10 @@ export const SelectedPokemon = () => {
   if (selectedPokemon === null) return <div>Loading...</div>
 
   return (
-    <div className="flex items-center gap-2 flex-col border-r border-neutral-300 h-full px-10">
-      <img src={pokeapi} alt="pokeapi" width={200} />
+    <div className="flex items-center gap-1 md:gap-2 flex-col justify-evenly border-b md:border-b-0 md:border-r border-neutral-300 h-full px-10">
+      <img src={pokeapi} alt="pokeapi" className="w-[200px]" />
 
-      <img src={selectedPokemon.sprites.front_default} alt={selectedPokemon.name} width={150} />
+      <img src={selectedPokemon.sprites.front_default} alt={selectedPokemon.name} className="w-[150px]" />
     </div>
   )
 }

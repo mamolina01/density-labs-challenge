@@ -32,24 +32,24 @@ export const PokemonPage = () => {
   if (selectedPokemon === null) return <PokemonNotFound />
 
   return (
-    <div className="w-full flex flex-col gap-2 px-10">
+    <div className="w-full flex flex-col gap-2 py-5 px-10">
       <Link to="/" className="self-start text-black!">
         Go back
       </Link>
       <span>Type</span>
       <span className="capitalize">{selectedPokemon.types[0].type.name}</span>
-      <div className="flex items-center justify-between">
+      <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-between">
         <span>Number: {selectedPokemon.id}</span>
-        <span>Name: {selectedPokemon.name}</span>
+        <span className="capitalize">Name: {selectedPokemon.name}</span>
         <span>Height: {selectedPokemon.height}</span>
         <span>Weight: {selectedPokemon.weight}</span>
       </div>
-      <div className="grid grid-cols-3">
-        <div className="flex flex-col col-span-2">
-          <span className="text-start">Stats</span>
+      <div className="grid md:grid-cols-3 gap-6 md:gap-0">
+        <div className="flex flex-col md:col-span-2">
+          <span className="text-center md:text-start">Stats</span>
           {selectedPokemon.stats.map(stat => (
             <div key={stat.stat.name} className="flex items-center justify-between">
-              <span className="capitalize">{stat.stat.name}</span>
+              <span className="capitalize text-start">{stat.stat.name}</span>
               <div className="flex items-center">
                 <span>{stat.base_stat}</span>
                 <div className="w-[150px] h-4 rounded relative overflow-hidden bg-neutral-300">
@@ -62,7 +62,9 @@ export const PokemonPage = () => {
         <div className="flex flex-col">
           <span>Abilities</span>
           {selectedPokemon.abilities.map(item => (
-            <span key={item.ability.name}>{item.ability.name}</span>
+            <span key={item.ability.name} className="capitalize">
+              {item.ability.name}
+            </span>
           ))}
         </div>
       </div>
