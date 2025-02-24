@@ -27,7 +27,7 @@ export const PokemonPage = () => {
   if (selectedPokemon === null) return <PokemonNotFound />
 
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2 px-10">
       <Link to="/" className="self-start text-black!">
         Go back
       </Link>

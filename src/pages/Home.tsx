@@ -1,18 +1,16 @@
 import { PokemonResponse } from '../interfaces'
-import pokeball from '../../public/pokeball.png'
-import { useNavigate, useSearchParams, Link } from 'react-router-dom'
+
+import { useSearchParams, Link } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { useSelectedPokemon } from '../hooks'
+import { PokemonItem } from '../components/pokemonItem/PokemonItem'
 
 export const Home = () => {
-  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const [pokemons, setPokemons] = useState<PokemonResponse | null>(null)
-  const { setSelectedPokemon } = useSelectedPokemon()
 
   const page = Number(searchParams.get('page')) || 1
   const getPokemons = useCallback(async () => {
-    const limit = 20
+    const limit = 14
     const offset = (page - 1) * limit
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
@@ -28,19 +26,8 @@ export const Home = () => {
   }, [getPokemons])
 
   return (
-    <div className="flex flex-col w-[500px] py-5">
-      {pokemons &&
-        pokemons.results.map(pokemon => (
-          <div
-            key={pokemon.url}
-            onClick={() => setSelectedPokemon(pokemon.name)}
-            onDoubleClick={() => navigate(`/${pokemon.name}`)}
-            className="flex items-center w-full justify-between border-b border-neutral-300 last:border-0 cursor-pointer"
-          >
-            <span className="text-black">{pokemon.name}</span>
-            <img src={pokeball} alt="pokeball" width={20} />
-          </div>
-        ))}
+    <div className="flex flex-col py-5 px-10 gap-2">
+      {pokemons && pokemons.results.map(pokemon => <PokemonItem pokemon={pokemon} key={pokemon.url} />)}
       <div className="flex items-center w-full justify-evenly mt-2">
         {pokemons?.previous && (
           <Link

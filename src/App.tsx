@@ -14,7 +14,7 @@ function App() {
   }, [setSelectedPokemon])
 
   return (
-    <div className="grid grid-cols-[1fr_2fr] gap-10 w-full bg-white">
+    <div className="grid grid-cols-[1fr_2fr] w-full bg-white">
       <Router>
         <SelectedPokemon />
         <Routes>
