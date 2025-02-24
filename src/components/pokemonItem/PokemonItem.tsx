@@ -1,7 +1,7 @@
 import { Result } from '../../interfaces'
 import { useSelectedPokemon } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
-import pokeball from '../../../public/pokeball.png'
+import pokeball from '/pokeball.png'
 
 interface Props {
   pokemon: Result

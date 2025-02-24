@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import pokeapi from '../../../public/pokeapi.png'
+import pokeapi from '/pokeapi.png'
 import { PokemonDetails } from '../../interfaces'
 import { RootState } from '../../redux/store'
 

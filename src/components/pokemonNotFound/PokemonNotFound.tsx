@@ -1,4 +1,4 @@
-import sadPokemon from '../../../public/sadPokemon.png'
+import sadPokemon from '/sadPokemon.png'
 
 export const PokemonNotFound = () => {
   return (

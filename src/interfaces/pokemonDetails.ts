@@ -12,8 +12,8 @@ export interface PokemonDetails {
   moves: Move[]
   name: string
   order: number
-  past_abilities: any[]
-  past_types: any[]
+  past_abilities: Ability[]
+  past_types: PastType[]
   species: Species
   sprites: Sprites
   stats: Stat[]
@@ -185,4 +185,9 @@ export interface Stat {
 export interface Type {
   slot: number
   type: Species
+}
+
+export interface PastType {
+  generation: Species
+  types: Type[]
 }

@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { PokemonDetails } from '../interfaces/pokemonDetails'
 import { Link } from 'react-router-dom'
-import { PokemonNotFound } from '../components'
+import { PokemonNotFound, Spinner } from '../components'
 
 export const PokemonPage = () => {
   const pokemonName = useParams().pokemonName
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetails | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const getPokemonDetails = async () => {
     try {
+      setIsLoading(true)
       const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
       const pokemon: PokemonDetails = await data.json()
 
@@ -18,16 +20,19 @@ export const PokemonPage = () => {
       console.log(error)
       setSelectedPokemon(null)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
     getPokemonDetails()
   }, [pokemonName])
 
+  if (isLoading) return <Spinner />
+
   if (selectedPokemon === null) return <PokemonNotFound />
 
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2 px-10">
       <Link to="/" className="self-start text-black!">
         Go back
       </Link>
