@@ -1,12 +1,13 @@
 import { PokemonResponse } from '../interfaces'
 
-import { useSearchParams, Link } from 'react-router-dom'
+import { useSearchParams, Link, useNavigate } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { PokemonItem } from '../components/pokemonItem/PokemonItem'
 
 export const Home = () => {
   const [searchParams] = useSearchParams()
   const [pokemons, setPokemons] = useState<PokemonResponse | null>(null)
+  const navigate = useNavigate()
 
   const page = Number(searchParams.get('page')) || 1
   const getPokemons = useCallback(async () => {
@@ -15,11 +16,16 @@ export const Home = () => {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
       const data: PokemonResponse = await response.json()
+
+      if (data.results.length === 0) {
+        navigate('/')
+        return
+      }
       setPokemons(data)
     } catch (error) {
       console.error('Error fetching pokemons:', error)
     }
-  }, [page])
+  }, [page, navigate])
 
   useEffect(() => {
     getPokemons()
